@@ -10,10 +10,6 @@ var path = require('path');
 var fs = require('fs');
 var commands = require('./lib/commands');
 
-var AttributeConversion = require('./dsl/attribute-conversion');
-var ComponentConversion = require('./dsl/component-conversion');
-var SustainConversion = require('./dsl/sustain-conversion');
-
 function assert(statement, test) {
   if (!test) {
     throw new Error(statement);
@@ -46,7 +42,7 @@ module.exports = {
         ' having trouble registering itself to the parent application.');
     }
 
-    var pathBase = this.project.addonPackages.flexi.path;
+    var pathBase = this.project.addonPackages['flexi-layouts'].path;
     compileScssVariables(path.join(pathBase, 'addon/styles'), this.flexiConfig());
 
     this.app = app;
@@ -83,30 +79,6 @@ module.exports = {
 
     org.flexi = this.flexiConfig();
     return org;
-  },
-
-  setupPreprocessorRegistry: function(type, registry) {
-    AttributeConversion.prototype.flexiConfig = this.flexiConfig();
-
-    registry.add('htmlbars-ast-plugin', {
-      name: "flexi-attribute-conversion",
-      before: "flexi-component-conversion",
-      plugin: AttributeConversion,
-      baseDir: function() { return __dirname; }
-    });
-
-    registry.add('htmlbars-ast-plugin', {
-      name: "flexi-component-conversion",
-      plugin: ComponentConversion,
-      baseDir: function() { return __dirname; }
-    });
-
-    registry.add('htmlbars-ast-plugin', {
-      name: "flexi-sustain-conversion",
-      plugin: SustainConversion,
-      baseDir: function() { return __dirname; }
-    });
-
   },
 
   preprocessTree: function(type, tree) {

@@ -11,14 +11,7 @@ Router.map(function() {
 
   this.route('tests', function() {
     this.route('layouts');
-    this.route('sustain');
-    this.route('sustain-b');
     this.route('mobile-first');
-    this.route('sustain-no-layout');
-    this.route('sustain-labels');
-    this.route('sustain-labels-2');
-    this.route('sustain-hooks');
-    this.route('sustain-classic-component');
   });
 
   this.route('docs', function() {
@@ -26,7 +19,6 @@ Router.map(function() {
     this.route('layout-elements');
     this.route('layout-components');
     this.route('overview');
-    this.route('sustain');
     this.route('layout-attributes');
     this.route('layout-service');
     this.route('installation');

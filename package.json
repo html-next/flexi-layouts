@@ -1,7 +1,7 @@
 {
-  "name": "flexi",
+  "name": "flexi-layouts",
   "version": "1.2.0",
-  "description": "Just a layout framework. Design for cross-platform with ease.",
+  "description": "The layouts portion of flexi",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -12,7 +12,7 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "https://github.com/runspired/flexi.git",
+  "repository": "https://github.com/html-next/flexi-layouts.git",
   "engines": {
     "node": ">= 0.10.0"
   },
