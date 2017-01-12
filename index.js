@@ -16,7 +16,7 @@ function assert(statement, test) {
 }
 
 module.exports = {
-  name: 'flexi',
+  name: 'flexi-layouts',
 
   included: function(app, parentAddon) {
     this._super.included.apply(this, arguments);
@@ -37,7 +37,7 @@ module.exports = {
     }
 
     if (!parentAddon && typeof app.import !== 'function') {
-      throw new Error('ember-font-awesome is being used within another addon or engine and is' +
+      throw new Error('flexi-layouts is being used within another addon or engine and is' +
         ' having trouble registering itself to the parent application.');
     }
 
