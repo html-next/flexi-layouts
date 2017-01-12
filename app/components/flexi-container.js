@@ -1,1 +1,1 @@
-export { default } from 'flexi/components/flexi-container';
+export { default } from 'flexi-layouts/components/flexi-container';

@@ -1,1 +1,1 @@
-export { default } from 'flexi/components/flexi-grid';
+export { default } from 'flexi-layouts/components/flexi-grid';
