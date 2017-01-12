@@ -339,8 +339,6 @@ export default Component.extend({
 
 ### Config
 
-The default blueprint will install `config/flexi.js` with the [default settings](./blueprints/flexi/files/config/flexi.js).
-
 **Settings**
 
 ```js
