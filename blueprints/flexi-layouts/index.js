@@ -1,7 +1,5 @@
 /*jshint node:true*/
 module.exports = {
-  description: 'Installs config',
-
   normalizeEntityName: function() {}
 
   // locals: function(options) {

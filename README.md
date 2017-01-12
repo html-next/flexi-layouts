@@ -20,7 +20,7 @@ runtime code and CSS to your project.
 ## Installation
 
 ```cli
-ember install flexi
+ember install flexi-layouts
 ```
 
 That's all that required if you're using the classic component layout. If you are using a _pod_-based structure you will also need to install the shim for `ember-app`. This is done by modifiying your  `ember-cli-build.js` file. This shim makes ember-cli's template tree able to find
@@ -28,7 +28,7 @@ the templates for layouts.
 
 ```js
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var shim = require('flexi/lib/pod-templates-shim');
+var shim = require('flexi-layouts/lib/pod-templates-shim');
 
 shim(EmberApp);
 ```
