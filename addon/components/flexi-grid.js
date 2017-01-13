@@ -1,10 +1,6 @@
-import Ember from 'ember';
+import Component from 'ember-component';
 import ContainerMixin from '../mixins/container';
 import layout from '../templates/components/flexi-grid';
-
-const {
-  Component
-  } = Ember;
 
 export default Component.extend(ContainerMixin, {
   layout,

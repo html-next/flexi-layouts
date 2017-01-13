@@ -1,13 +1,9 @@
-import Ember from 'ember';
+import Component from 'ember-component';
+import service from 'ember-service/inject';
 import layout from '../templates/components/flexi-layout';
-
-const {
-  Component,
-  inject
-  } = Ember;
 
 export default Component.extend({
   layout,
   tagName: '',
-  deviceLayout: inject.service('device/layout')
+  deviceLayout: service('device/layout')
 });
