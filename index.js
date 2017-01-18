@@ -2,11 +2,11 @@
 /* global require */
 'use strict';
 
+var getValidatedFlexiConfig = require('flexi-config/lib/get-validated-flexi-config');
+
 var LayoutCompiler = require('./lib/layout-compiler');
 var mergeTrees = require('broccoli-merge-trees');
 var Funnel = require('broccoli-funnel');
-var path = require('path');
-var fs = require('fs');
 var commands = require('./lib/commands');
 
 function assert(statement, test) {
@@ -52,22 +52,10 @@ module.exports = {
   _flexiConfig: null,
   flexiConfig: function() {
     if (!this._flexiConfig) {
-      var configPath = path.join(this.project.root, 'config', 'flexi.js');
-
-      if (fs.existsSync(configPath)) {
-        this._flexiConfig = require(configPath);
-
-        assert("config/flexi.js is defined, but could not be imported", this._flexiConfig);
-        assert("config/flexi.js is defined, but did not contain property [array] breakpoints", this._flexiConfig.breakpoints instanceof Array);
-        assert("config/flexi.js is defined, but did not contain property [number] columns", typeof this._flexiConfig.columns === 'number');
-
-      } else {
-        if (process.argv[2] !== 'install' && process.argv[3].indexOf('flexi') === -1) {
-          throw new Error("You must define a config file for flexi at '" + configPath + "'");
-        }
-      }
+      this._flexiConfig = getValidatedFlexiConfig(this.project.root);
     }
-    return this._flexiConfig || {};
+
+    return this._flexiConfig;
   },
 
   config: function() {
@@ -95,5 +83,4 @@ module.exports = {
   includedCommands: function () {
     return commands;
   }
-
 };
