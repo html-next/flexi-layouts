@@ -68,16 +68,13 @@
     "ember-resolver": "^2.0.3",
     "ember-source": "^2.11.0-beta.2",
     "eslint-plugin-ember-suave": "^1.0.0",
-    "flexi-config": "0.1.1",
+    "flexi-config": "0.1.2",
     "loader.js": "^4.0.10"
   },
   "engines": {
     "node": ">= 0.12.0"
   },
   "ember-addon": {
-    "after": [
-      "flexi-config"
-    ],
     "versionCompatibility": {
       "ember": ">=1.13.13"
     },
