@@ -75,6 +75,9 @@
     "node": ">= 0.12.0"
   },
   "ember-addon": {
+    "after": [
+      "flexi-config"
+    ],
     "versionCompatibility": {
       "ember": ">=1.13.13"
     },
