@@ -1,6 +1,6 @@
 {
   "name": "@html-next/flexi-layouts",
-  "version": "2.0.0-beta.10",
+  "version": "2.0.0-beta.11",
   "description": "The layouts portion of flexi",
   "keywords": [
     "layout",
@@ -31,13 +31,12 @@
   },
   "repository": "https://github.com/html-next/flexi-layouts.git",
   "scripts": {
-    "suave": "jscs addon app tests --fix",
     "build": "ember build",
     "start": "ember server",
     "test": "ember try:each"
   },
   "dependencies": {
-    "@html-next/flexi-config": "2.0.0-beta.6",
+    "@html-next/flexi-config": "2.0.0-beta.11",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-plugin": "^1.2.1",
