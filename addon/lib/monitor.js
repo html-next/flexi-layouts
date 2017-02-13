@@ -1,3 +1,5 @@
+import run from 'ember-runloop';
+
 const DEFAULT_ARRAY_SIZE = 10;
 
 export class ResizeMonitor {
@@ -81,8 +83,7 @@ export class ResizeMonitor {
         info.height = currentHeight;
 
         if (widthChanged || heightChanged) {
-          Promise.resolve(info)
-            .then((info) => {
+          run.join(() => {
               for (let j = 0; j < info.handlers.length; j++) {
                 info.handlers[j].call(null, info);
               }
