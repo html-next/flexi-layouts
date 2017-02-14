@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('tests', function() {
     this.route('layouts');
     this.route('mobile-first');
+    this.route('events-triggered');
   });
 
   this.route('classic-layout-test');

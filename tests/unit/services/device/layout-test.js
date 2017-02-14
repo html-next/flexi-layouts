@@ -5,7 +5,6 @@ moduleFor('service:device/layout', 'Unit | Service | device/layout', {
   // needs: ['service:foo']
 });
 
-// Replace this with your real tests.
 test('can check orientation of device', function(assert) {
   let service = this.subject();
   service.set('width', 5000);
