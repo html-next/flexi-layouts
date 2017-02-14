@@ -96,8 +96,8 @@ export default Service.extend(Evented, {
     }
     let oldWidth = this.get('width');
     let oldHeight = this.get('height');
-    let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    let width = this._currentWidth();
+    let height = this._currentHeight();
 
     this.setProperties({
       width,
@@ -105,15 +105,23 @@ export default Service.extend(Evented, {
     });
 
     if (oldWidth !== width) {
-      this.trigger('width-changed')
+      this.trigger('width-change');
     }
 
     if (oldHeight !== height) {
-      this.trigger('height-changed');
+      this.trigger('height-change');
     }
 
     if ((oldWidth !== width) || (oldHeight !== height)) {
-      this.trigger('resized');
+      this.trigger('resize');
     }
+  },
+
+  _currentWidth() {
+    return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  },
+
+  _currentHeight() {
+    return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
   }
 });
