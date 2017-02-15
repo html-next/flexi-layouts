@@ -1,20 +1,19 @@
-import Ember from 'ember';
+import { copy } from 'ember-metal/utils';
+import computed from 'ember-computed';
+import Evented from 'ember-evented';
+import run from 'ember-runloop';
+import Service from 'ember-service';
 import capitalize from '../../utils/capitalize';
 import monitor from '../../lib/monitor';
+import Ember from 'ember';
+const { defineProperty } = Ember;
 
-const {
-  computed,
-  copy,
-  Service,
-  run
-  } = Ember;
-
-export default Service.extend({
-
-  width: 1000,
+export default Service.extend(Evented, {
+  breakpoints: null,
   height: 500,
-
   monitor,
+  width: 1000,
+  _resizeHandler: null,
 
   orientation: computed('width', 'height', function() {
     let resolution = this.getProperties('width', 'height');
@@ -23,15 +22,19 @@ export default Service.extend({
     return isLandscape ? 'landscape' : 'portrait';
   }).readOnly(),
 
-  // TODO: deprecate deviceIs in favor of orientationIs
-  deviceIsLandscape: computed.equal('orientation', 'landscape'),
-  deviceIsPortrait: computed.not('deviceIsLandscape'),
+  orientationIsLandscape: computed.equal('orientation', 'landscape'),
+  orientationIsPortrait: computed.not('orientationIsLandscape'),
 
-  orientationIsLandscape: computed.alias('deviceIsLandscape'),
-  orientationIsPortrait: computed.alias('deviceIsPortrait'),
+  init() {
+    this._super();
 
-  breakpoints: null,
-  _resizeHandler: null,
+    this.setupBreakpoints();
+
+    if (typeof window === 'object' && typeof document === 'object') {
+      this.setupResize();
+      this.updateResolution();
+    }
+  },
 
   willDestroy() {
     this._super(...arguments);
@@ -39,27 +42,6 @@ export default Service.extend({
     if (typeof window === 'object' && typeof document === 'object') {
       window.removeEventListener('resize', this._resizeHandler, true);
     }
-  },
-
-  updateResolution() {
-    if (this.isDestroyed || this.isDestroying) {
-      return;
-    }
-
-    let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    let h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-    this.setProperties({
-      width: w,
-      height: h
-    });
-  },
-
-  setupResize() {
-    this._resizeHandler = () => {
-      run.debounce(this, this.updateResolution, 16);
-    };
-    window.addEventListener('resize', this._resizeHandler, true);
   },
 
   setupBreakpoints() {
@@ -79,7 +61,7 @@ export default Service.extend({
 
     bps.forEach((bp, i) => {
 
-      Ember.defineProperty(this, `is${capitalize(bp.name)}`, computed('width', function() {
+      defineProperty(this, `is${capitalize(bp.name)}`, computed('width', function() {
         let width = this.get('width');
         let next = bps[i + 1];
 
@@ -89,7 +71,7 @@ export default Service.extend({
         return width >= bp.begin;
       }));
 
-      Ember.defineProperty(this, `isAtLeast${capitalize(bp.name)}`, computed('width', function() {
+      defineProperty(this, `isAtLeast${capitalize(bp.name)}`, computed('width', function() {
         let width = this.get('width');
 
         return width >= bp.begin;
@@ -98,15 +80,48 @@ export default Service.extend({
     });
   },
 
-  init() {
-    this._super();
+  setupResize() {
+    this._resizeHandler = () => {
+      run.debounce(this, this.updateResolution, 16);
+    };
+    window.addEventListener('resize', this._resizeHandler, true);
+  },
 
-    this.setupBreakpoints();
-
-    if (typeof window === 'object' && typeof document === 'object') {
-      this.setupResize();
-      this.updateResolution();
+  /**
+   * Runs when resized and fires off events
+   */
+  updateResolution() {
+    if (this.isDestroyed || this.isDestroying) {
+      return;
     }
-  }
+    let oldWidth = this.get('width');
+    let oldHeight = this.get('height');
+    let width = this._currentWidth();
+    let height = this._currentHeight();
 
+    this.setProperties({
+      width,
+      height
+    });
+
+    if (oldWidth !== width) {
+      this.trigger('width-change');
+    }
+
+    if (oldHeight !== height) {
+      this.trigger('height-change');
+    }
+
+    if ((oldWidth !== width) || (oldHeight !== height)) {
+      this.trigger('resize');
+    }
+  },
+
+  _currentWidth() {
+    return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  },
+
+  _currentHeight() {
+    return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  }
 });
