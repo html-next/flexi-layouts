@@ -1,8 +1,7 @@
-/*jshint node:true*/
-/* global require, module */
-var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var shim = require('./lib/pod-templates-shim');
+/* eslint-env node */
+const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const shim = require('./lib/pod-templates-shim');
 shim(EmberApp);
 shim(EmberAddon);
 
@@ -12,7 +11,7 @@ module.exports = function(defaults) {
   defaults.snippetPaths = ['tests/dummy/snippets'];
 
   var app = new EmberAddon(defaults, {
-     babel: {
+    'ember-cli-babel': {
       includePolyfill: true
     },
     sassOptions: {},
