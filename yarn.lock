@@ -2,31 +2,28 @@
 # yarn lockfile v1
 
 
-"@html-next/flexi-config@2.0.0-beta.12":
-  version "2.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/@html-next/flexi-config/-/flexi-config-2.0.0-beta.12.tgz#af2fa4d90a6d1fb510511c1c02e51a9d6514eac6"
+"@html-next/flexi-config@2.0.0-rc.1":
+  version "2.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@html-next/flexi-config/-/flexi-config-2.0.0-rc.1.tgz#a19417e5b5d1e85eb56df116b6892562ac17d259"
   dependencies:
     ember-cli-babel "^5.1.7"
 
-"@html-next/flexi-default-styles@2.0.0-beta.12":
-  version "2.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/@html-next/flexi-default-styles/-/flexi-default-styles-2.0.0-beta.12.tgz#5f7a58a85e63d84dc75172b4045f0430a91084b0"
+"@html-next/flexi-default-styles@2.0.0-rc.2":
+  version "2.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@html-next/flexi-default-styles/-/flexi-default-styles-2.0.0-rc.2.tgz#0d4f299e5a0e430354dd9142a5cdd7c7897978d5"
   dependencies:
-    "@html-next/flexi-config" "2.0.0-beta.12"
+    "@html-next/flexi-config" "2.0.0-rc.1"
     ember-cli-babel "^5.1.7"
     ember-cli-sass "^6.0.0"
     rsvp "^3.2.0"
 
-"@html-next/flexi-dsl@2.0.0-beta.12":
-  version "2.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/@html-next/flexi-dsl/-/flexi-dsl-2.0.0-beta.12.tgz#475f710c48f20c1bf8bbfc1a738e3245985870be"
+"@html-next/flexi-dsl@2.0.0-rc.2":
+  version "2.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@html-next/flexi-dsl/-/flexi-dsl-2.0.0-rc.2.tgz#7249585bb7a8519ea5af0ae542daa0d037921d8a"
   dependencies:
-    "@html-next/flexi-config" "2.0.0-beta.12"
-    chalk "^1.1.1"
-    debug "^2.2.0"
+    "@html-next/flexi-config" "2.0.0-rc.1"
     ember-cli-babel "^5.1.7"
     ember-cli-preprocess-registry "^3.0.0"
-    object-assign "^4.1.0"
     rsvp "^3.2.0"
 
 abbrev@1:
