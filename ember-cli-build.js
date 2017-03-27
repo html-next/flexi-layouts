@@ -15,7 +15,12 @@ module.exports = function(defaults) {
       includePolyfill: true
     },
     sassOptions: {},
-    hinting: true
+    hinting: true,
+    nodeAssets: {
+      testdouble: {
+        vendor: ['dist/testdouble.js']
+      }
+    }
   });
 
   /*
@@ -24,6 +29,10 @@ module.exports = function(defaults) {
     This build file does *not* influence how the addon or the app using it
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
+
+  app.import('vendor/testdouble/dist/testdouble.js', {
+    using: [{ transformation: 'amd', as: 'testdouble' }]
+  });
 
   return app.toTree();
 };

@@ -1,6 +1,0 @@
-{
-  "name": "flexi-layouts",
-  "dependencies": {
-    "testdouble": "testdouble/testdouble.js#^1.4.2"
-  }
-}
