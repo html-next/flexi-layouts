@@ -1,23 +1,17 @@
 /* eslint-env node */
 'use strict';
 
-var getValidatedFlexiConfig = require('@html-next/flexi-config/lib/get-validated-flexi-config');
+const getValidatedFlexiConfig = require('@html-next/flexi-config/lib/get-validated-flexi-config');
 
-var LayoutCompiler = require('./lib/layout-compiler');
-var mergeTrees = require('broccoli-merge-trees');
-var Funnel = require('broccoli-funnel');
-var commands = require('./lib/commands');
-
-function assert(statement, test) {
-  if (!test) {
-    throw new Error(statement);
-  }
-}
+const LayoutCompiler = require('./lib/layout-compiler');
+const mergeTrees = require('broccoli-merge-trees');
+const Funnel = require('broccoli-funnel');
+const commands = require('./lib/commands');
 
 module.exports = {
   name: 'flexi-layouts',
 
-  included: function(app, parentAddon) {
+  included(app, parentAddon) {
     this._super.included.apply(this, arguments);
 
     // Quick fix for add-on nesting
@@ -36,20 +30,20 @@ module.exports = {
     }
 
     if (!parentAddon && typeof app.import !== 'function') {
-      throw new Error('flexi-layouts is being used within another addon or engine and is' +
-        ' having trouble registering itself to the parent application.');
+      throw new Error('flexi-layouts is being used within another addon or engine and is'
+        + ' having trouble registering itself to the parent application.');
     }
 
     this.app = app;
     return app;
   },
 
-  isDevelopingAddon: function() {
+  isDevelopingAddon() {
     return false;
   },
 
   _flexiConfig: null,
-  flexiConfig: function() {
+  flexiConfig() {
     if (!this._flexiConfig) {
       this._flexiConfig = getValidatedFlexiConfig(this.project.root);
     }
@@ -57,20 +51,20 @@ module.exports = {
     return this._flexiConfig;
   },
 
-  config: function() {
-    var org = this._super.config.apply(this, arguments);
+  config() {
+    let org = this._super.config.apply(this, arguments);
 
     org.flexi = this.flexiConfig();
     return org;
   },
 
-  preprocessTree: function(type, tree) {
+  preprocessTree(type, tree) {
     if (type === 'template') {
       if (!tree) {
-        throw new Error("No Template Tree is Present");
+        throw new Error('No Template Tree is Present');
       }
-      var layoutTree = new LayoutCompiler(tree, { breakpoints: this.flexiConfig().breakpoints });
-      var templateTree = new Funnel(tree, {
+      let layoutTree = new LayoutCompiler(tree, { breakpoints: this.flexiConfig().breakpoints });
+      let templateTree = new Funnel(tree, {
         exclude: ['**/-layouts/*.hbs']
       });
       return mergeTrees([templateTree, layoutTree], { overwrite: true });
@@ -79,7 +73,7 @@ module.exports = {
     return tree;
   },
 
-  includedCommands: function () {
+  includedCommands() {
     return commands;
   }
 };
