@@ -1,14 +1,10 @@
-import Ember from 'ember';
-
-const {
-  Mixin,
-  computed,
-  run,
-  inject
-  } = Ember;
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
+import { computed } from '@ember/object';
+import { run } from '@ember/runloop';
 
 export default Mixin.create({
-  deviceLayout: inject.service('device/layout'),
+  deviceLayout: service('device/layout'),
   width: 0,
   inserted: false,
   classNameBindings: ['breakpointClass'],
