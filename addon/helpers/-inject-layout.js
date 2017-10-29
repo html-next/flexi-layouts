@@ -1,13 +1,9 @@
-import Ember from 'ember';
-
-const {
-  Helper,
-  inject
-  } = Ember;
+import { inject as service } from '@ember/service';
+import Helper from '@ember/component/helper';
 
 export default Helper.extend({
 
-  layoutService: inject.service('device/layout'),
+  layoutService: service('device/layout'),
 
   compute() {
     return this.get('layoutService');
