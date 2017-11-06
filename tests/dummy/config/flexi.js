@@ -1,4 +1,4 @@
-/* jshint node:true */
+/* eslint-env node */
 module.exports = {
 
   // breakpoints, order does not matter, they will be sorted by `begin`

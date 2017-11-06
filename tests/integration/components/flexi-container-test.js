@@ -2,7 +2,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import config from 'dummy/config/environment';
 import hasEmberVersion from 'ember-test-helpers/has-ember-version';
-import { htmlSafe } from 'ember-string';
+import { htmlSafe } from '@ember/string';
 
 const bp = {};
 const widths = {};

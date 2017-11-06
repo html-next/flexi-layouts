@@ -12,7 +12,7 @@ export default Mixin.create({
     let bps = this.get('deviceLayout.breakpoints');
 
     if (!this.get('inserted')) {
-     return `container-${bps[0].prefix}`;
+      return `container-${bps[0].prefix}`;
     }
 
     let width = this.element.clientWidth;
@@ -37,7 +37,9 @@ export default Mixin.create({
     run.schedule('afterRender', () => {
       // Ember before v2.10 can arrive in afterRender with a null element.
       // Details here: https://github.com/html-next/flexi/issues/101
-      if (this.isDestroying) return;
+      if (this.isDestroying) {
+        return;
+      }
 
       this.set('inserted', true);
       this.get('deviceLayout')

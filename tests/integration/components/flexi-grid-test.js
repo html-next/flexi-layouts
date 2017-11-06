@@ -2,8 +2,8 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import config from 'dummy/config/environment';
 import hasEmberVersion from 'ember-test-helpers/has-ember-version';
-import { htmlSafe } from 'ember-string';
-import EmberObject from 'ember-object';
+import { htmlSafe } from '@ember/string';
+import EmberObject from '@ember/object';
 
 const bp = {};
 const widths = EmberObject.create({});

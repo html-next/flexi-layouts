@@ -1,9 +1,9 @@
 import { defineProperty } from '@ember/object';
-import { copy } from 'ember-metal/utils';
-import computed from 'ember-computed';
-import Evented from 'ember-evented';
-import run from 'ember-runloop';
-import Service from 'ember-service';
+import { copy } from '@ember/object/internals';
+import { computed } from '@ember/object';
+import Evented from '@ember/object/evented';
+import { run } from '@ember/runloop';
+import Service from '@ember/service';
 import capitalize from '../../utils/capitalize';
 import monitor from '../../lib/monitor';
 

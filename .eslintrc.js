@@ -8,9 +8,11 @@ module.exports = {
     'eslint:recommended',
     'plugin:ember-suave/recommended'
   ],
+  plugins: ['ember'],
   env: {
     browser: true
   },
   rules: {
+    'ember/no-old-shims': 'error',
   }
 };

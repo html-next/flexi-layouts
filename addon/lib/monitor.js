@@ -1,4 +1,4 @@
-import run from 'ember-runloop';
+import { run } from '@ember/runloop';
 
 const DEFAULT_ARRAY_SIZE = 10;
 
@@ -26,7 +26,7 @@ export class ResizeMonitor {
       this.elements[index] = element;
       this.handlers[index] = { width: 0, height: 0, handlers: [handler] };
     } else {
-      let handlers = this.handlers[index].handlers;
+      let { handlers } = this.handlers[index];
 
       handlers.push(handler);
     }
@@ -84,10 +84,10 @@ export class ResizeMonitor {
 
         if (widthChanged || heightChanged) {
           run.join(() => {
-              for (let j = 0; j < info.handlers.length; j++) {
-                info.handlers[j].call(null, info);
-              }
-            });
+            for (let j = 0; j < info.handlers.length; j++) {
+              info.handlers[j].call(null, info);
+            }
+          });
         }
       }
 
