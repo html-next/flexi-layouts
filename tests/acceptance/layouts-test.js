@@ -1,7 +1,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import getOwner from '../helpers/get-owner';
-import run from 'ember-runloop';
+import { run } from '@ember/runloop';
 
 moduleForAcceptance('Acceptance | layouts', {
   beforeEach(assert) {
