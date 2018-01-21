@@ -1,1 +1,1 @@
-export { default } from 'flexi-layouts/components/flexi-container';
+export { default } from '@html-next/flexi-layouts/components/flexi-container';

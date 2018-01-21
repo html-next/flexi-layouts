@@ -1,1 +1,1 @@
-export { default } from 'flexi-layouts/components/flexi-layout';
+export { default } from '@html-next/flexi-layouts/components/flexi-layout';

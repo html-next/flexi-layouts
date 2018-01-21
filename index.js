@@ -1,4 +1,3 @@
-/* eslint-env node */
 'use strict';
 
 const getValidatedFlexiConfig = require('@html-next/flexi-config/lib/get-validated-flexi-config');
@@ -9,7 +8,7 @@ const Funnel = require('broccoli-funnel');
 const commands = require('./lib/commands');
 
 module.exports = {
-  name: 'flexi-layouts',
+  name: '@html-next/flexi-layouts',
 
   included(app, parentAddon) {
     this._super.included.apply(this, arguments);
@@ -30,7 +29,7 @@ module.exports = {
     }
 
     if (!parentAddon && typeof app.import !== 'function') {
-      throw new Error('flexi-layouts is being used within another addon or engine and is'
+      throw new Error('@html-next/flexi-layouts is being used within another addon or engine and is'
         + ' having trouble registering itself to the parent application.');
     }
 

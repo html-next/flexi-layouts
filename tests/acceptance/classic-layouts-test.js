@@ -1,13 +1,15 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { module, test } from 'qunit';
+import { currentURL, visit } from '@ember/test-helpers';
+import { find } from 'ember-native-dom-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance('Acceptance | classic layouts');
+module('Acceptance | classic layouts', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('visiting /classic-layout-test', function(assert) {
-  visit('/classic-layout-test');
+  test('visiting /classic-layout-test', async function(assert) {
+    await visit('/classic-layout-test');
 
-  andThen(function() {
     assert.equal(currentURL(), '/classic-layout-test');
-    assert.equal(find('h1.test-header').text(), 'Success!', 'The layout renders');
+    assert.equal(find('h1.test-header').textContent, 'Success!', 'The layout renders');
   });
 });

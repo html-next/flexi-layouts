@@ -1,51 +1,47 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
-import getOwner from '../helpers/get-owner';
+import { module, test } from 'qunit';
+import { currentURL, visit } from '@ember/test-helpers';
+import { find } from 'ember-native-dom-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 import { run } from '@ember/runloop';
 
-moduleForAcceptance('Acceptance | layouts', {
-  beforeEach(assert) {
-    assert.deviceLayout = getOwner(this).lookup('service:device/layout');
-  }
-});
+let deviceLayout;
 
-test('visiting /tests/layouts', function(assert) {
-  visit('/tests/layouts');
-  let { deviceLayout } = assert;
-  let breakpoints = deviceLayout.get('breakpoints');
-  let bp = {};
+module('Acceptance | layouts', function(hooks) {
+  setupApplicationTest(hooks);
 
-  breakpoints.forEach(function(point) {
-    bp[point.name] = point.begin + 5;
+  hooks.beforeEach(function() {
+    deviceLayout = this.owner.lookup('service:device/layout');
   });
 
-  deviceLayout.set('width', bp.huge);
+  test('visiting /tests/layouts', async function(assert) {
+    await visit('/tests/layouts');
+    let breakpoints = deviceLayout.get('breakpoints');
+    let bp = {};
 
-  andThen(() => {
+    breakpoints.forEach(function(point) {
+      bp[point.name] = point.begin + 5;
+    });
+
+    deviceLayout.set('width', bp.huge);
+
     assert.equal(currentURL(), '/tests/layouts');
 
-    assert.equal(find('h1.layout-test').text(), 'Huge!', `The layout renders the huge layout when width is ${bp.huge}`);
+    assert.equal(find('h1.layout-test').textContent, 'Huge!', `The layout renders the huge layout when width is ${bp.huge}`);
     run(() => {
       deviceLayout.set('width', bp.desktop);
     });
 
-    andThen(() => {
-      assert.equal(find('h1.layout-test').text(), 'Desktop!', `The layout renders the desktop layout when width is ${bp.desktop}`);
-      run(() => {
-        deviceLayout.set('width', bp.tablet);
-      });
-
-      andThen(() => {
-        assert.equal(find('h1.layout-test').text(), 'Tablet!', `The layout renders the tablet layout when width is ${bp.tablet}`);
-        run(() => {
-          deviceLayout.set('width', bp.mobile);
-        });
-
-        andThen(() => {
-          assert.equal(find('h1.layout-test').text(), 'Mobile!', `The layout renders the mobile layout when width is ${bp.mobile}`);
-        });
-      });
+    assert.equal(find('h1.layout-test').textContent, 'Desktop!', `The layout renders the desktop layout when width is ${bp.desktop}`);
+    run(() => {
+      deviceLayout.set('width', bp.tablet);
     });
+
+    assert.equal(find('h1.layout-test').textContent, 'Tablet!', `The layout renders the tablet layout when width is ${bp.tablet}`);
+    run(() => {
+      deviceLayout.set('width', bp.mobile);
+    });
+
+    assert.equal(find('h1.layout-test').textContent, 'Mobile!', `The layout renders the mobile layout when width is ${bp.mobile}`);
   });
 });
 
