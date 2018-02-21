@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@html-next/flexi-default-styles": "2.1.0",
-    "@html-next/flexi-dsl": "2.0.3",
+    "@html-next/flexi-dsl": "2.1.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-cli": "~3.0.0-beta.2",
     "ember-cli-changelog": "0.3.4",
