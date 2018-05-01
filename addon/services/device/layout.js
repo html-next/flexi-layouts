@@ -6,6 +6,7 @@ import { run } from '@ember/runloop';
 import Service from '@ember/service';
 import capitalize from '../../utils/capitalize';
 import monitor from '../../lib/monitor';
+import window from 'ember-window-mock';
 
 export default Service.extend(Evented, {
   breakpoints: null,
@@ -117,10 +118,20 @@ export default Service.extend(Evented, {
   },
 
   _currentWidth() {
-    return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    const widths = [
+      window.document.documentElement.clientWidth,
+      window.innerWidth,
+      window.screen.width // for mobile iOS
+    ]
+    return Math.min(...widths.filter(width => width));
   },
 
   _currentHeight() {
-    return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    const heights = [
+      window.document.documentElement.clienthHeight,
+      window.innerHeight,
+      window.screen.height // for mobile iOS
+    ]
+    return Math.min(...heights.filter(height => height));
   }
 });
