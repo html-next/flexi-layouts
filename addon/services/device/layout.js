@@ -1,5 +1,5 @@
 import { defineProperty } from '@ember/object';
-import { copy } from '@ember/object/internals';
+import { copy } from 'ember-copy';
 import { computed } from '@ember/object';
 import Evented from '@ember/object/evented';
 import { run } from '@ember/runloop';
