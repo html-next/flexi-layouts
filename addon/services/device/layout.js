@@ -128,7 +128,7 @@ export default Service.extend(Evented, {
 
   _currentHeight() {
     const heights = [
-      window.document.documentElement.clienthHeight,
+      window.document.documentElement.clientHeight,
       window.innerHeight,
       window.screen.height // for mobile iOS
     ]
