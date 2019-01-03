@@ -1,6 +1,5 @@
 import { module, test } from 'qunit';
-import { currentURL, visit } from '@ember/test-helpers';
-import { find } from 'ember-native-dom-helpers';
+import { currentURL, find, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { run } from '@ember/runloop';
 

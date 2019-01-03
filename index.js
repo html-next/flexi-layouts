@@ -8,7 +8,7 @@ const Funnel = require('broccoli-funnel');
 const commands = require('./lib/commands');
 
 module.exports = {
-  name: '@html-next/flexi-layouts',
+  name: require('./package').name,
 
   included(app, parentAddon) {
     this._super.included.apply(this, arguments);
