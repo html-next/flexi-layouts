@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { currentURL, find, visit } from '@ember/test-helpers';
+import { currentURL, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { run } from '@ember/runloop';
 
@@ -25,22 +25,31 @@ module('Acceptance | layouts', function(hooks) {
 
     assert.equal(currentURL(), '/tests/layouts');
 
-    assert.equal(find('h1.layout-test').textContent, 'Huge!', `The layout renders the huge layout when width is ${bp.huge}`);
+    assert.dom('h1.layout-test').hasText('Huge!', `The layout renders the huge layout when width is ${bp.huge}`);
     run(() => {
       deviceLayout.set('width', bp.desktop);
     });
 
-    assert.equal(find('h1.layout-test').textContent, 'Desktop!', `The layout renders the desktop layout when width is ${bp.desktop}`);
+    assert.dom('h1.layout-test').hasText(
+      'Desktop!',
+      `The layout renders the desktop layout when width is ${bp.desktop}`
+    );
     run(() => {
       deviceLayout.set('width', bp.tablet);
     });
 
-    assert.equal(find('h1.layout-test').textContent, 'Tablet!', `The layout renders the tablet layout when width is ${bp.tablet}`);
+    assert.dom('h1.layout-test').hasText(
+      'Tablet!',
+      `The layout renders the tablet layout when width is ${bp.tablet}`
+    );
     run(() => {
       deviceLayout.set('width', bp.mobile);
     });
 
-    assert.equal(find('h1.layout-test').textContent, 'Mobile!', `The layout renders the mobile layout when width is ${bp.mobile}`);
+    assert.dom('h1.layout-test').hasText(
+      'Mobile!',
+      `The layout renders the mobile layout when width is ${bp.mobile}`
+    );
   });
 });
 

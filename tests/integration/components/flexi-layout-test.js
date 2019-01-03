@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | flexi layout', function(hooks) {
@@ -17,6 +17,6 @@ module('Integration | Component | flexi layout', function(hooks) {
       {{/flexi-layout}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'template block text');
+    assert.dom('*').hasText('template block text');
   });
 });

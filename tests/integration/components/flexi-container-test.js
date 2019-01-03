@@ -29,7 +29,7 @@ module('Integration | Component | flexi container', function(hooks) {
     `);
 
     assert.equal(find('container').tagName, 'CONTAINER', 'We rendered a container');
-    assert.equal(find('container').textContent.trim(), 'template block text');
+    assert.dom('container').hasText('template block text');
   });
 
   test('huge responsive containers are responsive', async function(assert) {
@@ -44,7 +44,7 @@ module('Integration | Component | flexi container', function(hooks) {
     </div>
     `);
 
-    assert.ok(find('container').classList.contains('container-lg'), 'We rendered the right classes for huge');
+    assert.dom('container').hasClass('container-lg', 'We rendered the right classes for huge');
 
     // desktop
     await render(hbs`
@@ -55,7 +55,7 @@ module('Integration | Component | flexi container', function(hooks) {
     </div>
     `);
 
-    assert.ok(find('container').classList.contains('container-md'), 'We rendered the right classes for desktop');
+    assert.dom('container').hasClass('container-md', 'We rendered the right classes for desktop');
 
     // tablet
     await render(hbs`
@@ -66,7 +66,7 @@ module('Integration | Component | flexi container', function(hooks) {
     </div>
     `);
 
-    assert.ok(find('container').classList.contains('container-sm'), 'We rendered the right classes for tablet');
+    assert.dom('container').hasClass('container-sm', 'We rendered the right classes for tablet');
 
     // mobile
     await render(hbs`
@@ -77,7 +77,7 @@ module('Integration | Component | flexi container', function(hooks) {
     </div>
     `);
 
-    assert.ok(find('container').classList.contains('container-xs'), 'We rendered the right classes for mobile');
+    assert.dom('container').hasClass('container-xs', 'We rendered the right classes for mobile');
   });
 
   test('it does not throw an error when a container is destroyed during a rerender', async function(assert) {
@@ -103,8 +103,8 @@ module('Integration | Component | flexi container', function(hooks) {
       `);
 
       assert.equal(find('container').tagName, 'CONTAINER', 'We rendered a container');
-      assert.ok(find('container').classList.contains('container-xs'), 'The container is responsive');
-      assert.equal(find('container').textContent.trim(), 'template block text');
+      assert.dom('container').hasClass('container-xs', 'The container is responsive');
+      assert.dom('container').hasText('template block text');
     });
   }
 });

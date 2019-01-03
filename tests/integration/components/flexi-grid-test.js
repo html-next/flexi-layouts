@@ -30,7 +30,7 @@ module('Integration | Component | flexi grid', function(hooks) {
     `);
 
     assert.equal(find('grid').tagName, 'GRID', 'We rendered a grid');
-    assert.equal(find('grid').textContent.trim(), 'template block text');
+    assert.dom('grid').hasText('template block text');
   });
 
   test('responsive grids are responsive', async function(assert) {
@@ -45,7 +45,7 @@ module('Integration | Component | flexi grid', function(hooks) {
     </div>
     `);
 
-    assert.ok(find('grid').classList.contains('container-lg'), 'We rendered the right classes for huge');
+    assert.dom('grid').hasClass('container-lg', 'We rendered the right classes for huge');
 
     // desktop
     await render(hbs`
@@ -56,7 +56,7 @@ module('Integration | Component | flexi grid', function(hooks) {
     </div>
     `);
 
-    assert.ok(find('grid').classList.contains('container-md'), 'We rendered the right classes for desktop');
+    assert.dom('grid').hasClass('container-md', 'We rendered the right classes for desktop');
 
     // tablet
     await render(hbs`
@@ -67,7 +67,7 @@ module('Integration | Component | flexi grid', function(hooks) {
     </div>
     `);
 
-    assert.ok(find('grid').classList.contains('container-sm'), 'We rendered the right classes for tablet');
+    assert.dom('grid').hasClass('container-sm', 'We rendered the right classes for tablet');
 
     // mobile
     await render(hbs`
@@ -78,7 +78,7 @@ module('Integration | Component | flexi grid', function(hooks) {
     </div>
     `);
 
-    assert.ok(find('grid').classList.contains('container-xs'), 'We rendered the right classes for mobile');
+    assert.dom('grid').hasClass('container-xs', 'We rendered the right classes for mobile');
   });
 
   test('it renders in angle bracket form', async function(assert) {
@@ -92,9 +92,9 @@ module('Integration | Component | flexi grid', function(hooks) {
     </div>
     `);
 
-    assert.equal(getElement(this).tagName, 'GRID', 'We rendered a grid');
-    assert.equal(getElement(this).className, '', 'The grid is not responsive');
-    assert.equal(find('grid').textContent.trim(), 'template block text');
+    assert.equal(find('grid').tagName, 'GRID', 'We rendered a grid');
+    assert.dom('grid').doesNotHaveClass('container-xs', 'The grid is not responsive');
+    assert.dom('grid').hasText('template block text');
   });
 
   if (hasEmberVersion(2, 0)) {
@@ -110,8 +110,8 @@ module('Integration | Component | flexi grid', function(hooks) {
       `);
 
       assert.equal(find('grid').tagName, 'GRID', 'We rendered a grid');
-      assert.ok(find('grid').classList.contains('container-xs'), 'The grid is responsive');
-      assert.equal(find('grid').textContent.trim(), 'template block text');
+      assert.dom('grid').hasClass('container-xs', 'The grid is responsive');
+      assert.dom('grid').hasText('template block text');
     });
   }
 });
