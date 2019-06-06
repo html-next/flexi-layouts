@@ -49,7 +49,7 @@
     "ember-cli-preprocess-registry": "^3.0.0",
     "ember-copy": "^1.0.0",
     "ember-window-mock": "^0.4.0",
-    "rsvp": "^4.0.0"
+    "rsvp": "4.8.4"
   },
   "devDependencies": {
     "@html-next/flexi-default-styles": "2.1.1",
