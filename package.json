@@ -45,7 +45,7 @@
     "chalk": "^2.1.0",
     "debug": "^3.0.1",
     "ember-cli-babel": "^6.6.0",
-    "ember-cli-htmlbars": "^2.0.1",
+    "ember-cli-htmlbars": "^4.2.0",
     "ember-cli-preprocess-registry": "^3.0.0",
     "ember-copy": "^1.0.0",
     "ember-window-mock": "^0.4.0",
